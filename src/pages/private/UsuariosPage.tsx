@@ -173,7 +173,7 @@ export const UsuariosPage = () => {
       if (formState.password.trim()) payloadUpdate.password = formState.password;
 
       if (currentUser?.id) {
-        const putRes = await axios.put(`/users/${currentUser.id}`, payloadUpdate);
+        await axios.put(`/users/${currentUser.id}`, payloadUpdate);
 
         if (toLowerStatus(currentUser.status) !== toLowerStatus(formState.status)) {
           await axios.patch(`/users/${currentUser.id}`, { status: toLowerStatus(formState.status) });
@@ -229,7 +229,7 @@ export const UsuariosPage = () => {
   };
 
   const handleToggleStatus = async (id: number, status: StatusAnyCase) => {
-    const confirmed = window.confirm("¿Seguro de cambiar el estado del usuario?");
+    const confirmed = window.confirm("¿Seguro de cambiar el estado del usuario?"); 
     if (!confirmed) return;
 
     try {
@@ -307,7 +307,6 @@ export const UsuariosPage = () => {
         Usuarios
       </Typography>
 
-      {/* Filtros */}
       <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
         <TextField
           placeholder="Buscar por usuario..."
@@ -360,7 +359,6 @@ export const UsuariosPage = () => {
         />
       </Box>
 
-      {/* Modal */}
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
         <DialogTitle>
           {currentUser ? "Editar Usuario" : "Nuevo Usuario"}
@@ -377,7 +375,6 @@ export const UsuariosPage = () => {
             }
           />
 
-          {/* Password */}
           <TextField
             label="Password"
             fullWidth
@@ -402,7 +399,6 @@ export const UsuariosPage = () => {
             }}
           />
 
-          {/* Confirmar Password */}
           <TextField
             label="Confirmar Password"
             fullWidth
@@ -427,7 +423,6 @@ export const UsuariosPage = () => {
             }}
           />
 
-          {/* Estado */}
           <TextField
             select
             label="Estado"
